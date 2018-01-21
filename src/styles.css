@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #f8f8f8;
+  font-family: "Avenir Next Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.grid-item {
+  width: calc(33.333% - 32px);
+  margin: 0 16px;
+}
