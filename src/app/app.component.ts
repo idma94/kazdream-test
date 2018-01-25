@@ -9,15 +9,31 @@ import {ServerService} from './shared/server.service';
 export class AppComponent implements OnInit {
 
   photos = [];
+  loading = false;
+  page = 1;
+  perPage = 20;
   total = 0;
 
   constructor(private server: ServerService) {
   }
 
   ngOnInit(): void {
-    this.server.getPhotos().subscribe(res => {
-      this.total = parseInt(res.headers.get('x-total'), 10);
-      this.photos = res.body;
+    this.getPhotos(this.page);
+  }
+
+  getPhotos(page) {
+    const options = {
+      page: page,
+      per_page: this.perPage
+    };
+    this.server.getPhotos(options).subscribe(res => {
+      this.total = res.total;
+      this.photos = res.photos;
+      this.page = page;
     });
+  }
+
+  pageChange(page: number): void {
+    this.page = page;
   }
 }
