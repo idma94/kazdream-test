@@ -20,9 +20,9 @@
 }
 
 .pagination-button:hover {
-  background: rgba(0, 0, 0, .03);
-  color: rgba(0, 0, 0, .44);
-  border-color: transparent;
+  /*background: rgba(0, 0, 0, .75);*/
+  color: rgba(0, 0, 0, .75);
+  border-color:  rgba(0, 0, 0, .75);
 }
 
 .pagination-button.active {
@@ -30,6 +30,7 @@
   border-color: transparent;
   color: #ffffff;
 }
+
 .pagination-button.disabled {
   pointer-events: none;
   cursor: not-allowed;

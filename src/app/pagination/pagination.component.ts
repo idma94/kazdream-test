@@ -9,7 +9,8 @@ export class PaginationComponent implements OnInit {
 
   @Input() total = 0;
   @Input() page = 1;
-  @Input() perPage = 12;
+  @Input() perPage = 13;
+  @Input() pageRange = 3;
   @Output() pageChanged: EventEmitter<number> = new EventEmitter();
 
   constructor() {
@@ -30,12 +31,30 @@ export class PaginationComponent implements OnInit {
     return this.page - 1;
   }
 
-  isFirst() {
-    return this.page < 1;
+  get hasNext() {
+    return this.page < this.totalPages;
   }
 
-  isLast() {
-    return this.page === this.totalPages;
+  get hasPrev() {
+    return this.page > 1;
+  }
+
+  get rangeStart() {
+    const start = this.page - this.pageRange;
+    return start > 0 ? start : 1;
+  }
+
+  get rangeEnd() {
+    const end = this.page + this.pageRange;
+    return  end < this.totalPages ? end : this.totalPages;
+  }
+
+  get pages() {
+    const pages = [];
+    for (let i = this.rangeStart; i <= this.rangeEnd; i++) {
+      pages.push(i);
+    }
+    return pages;
   }
 
   pageChange(page: number): void {

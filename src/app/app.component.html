@@ -1,24 +1,28 @@
 <div class="content">
+  <div class="container">
+    <div class="grid" [@ForEnter]="photos.length" >
+      <div class="grid-item"*ngFor="let photo of photos">
+        <app-card>
+          <app-card-header>
+            <app-card-image [height]="32" [width]="32">
+              <img [src]="photo.user.profile_image.small" alt="">
+            </app-card-image>
+            <app-card-title>{{photo.user.name}}</app-card-title>
+          </app-card-header>
 
-  <div class="grid">
-    <div class="grid-item" *ngFor="let photo of photos">
-      <app-card>
-        <app-card-header>
-          <app-card-image [height]="32" [width]="32">
-            <img [src]="photo.user.profile_image.small" alt="">
-          </app-card-image>
-          <app-card-title>{{photo.user.name}}</app-card-title>
-        </app-card-header>
-
-        <div class="card-body">
-          <img [src]="photo.urls.small" alt="">
-        </div>
-      </app-card>
+          <div class="card-body">
+            <img [src]="photo.urls.small" alt="">
+          </div>
+        </app-card>
+      </div>
     </div>
   </div>
 </div>
+
 <div class="pagination-wrapper">
-  <app-pagination [page]="page" [total]="total" (pageChanged)="getPhotos($event)"></app-pagination>
+  <div class="container">
+    <app-pagination [page]="page" [total]="total" [perPage]="perPage" (pageChanged)="getPhotos($event)"></app-pagination>
+  </div>
 </div>
 
 
